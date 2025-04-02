@@ -21,8 +21,8 @@ $heartFilled: #ef4444;
   --card-background-color: #{$cardBackground};
   --text-color: #{$text};
   --subText-color: #{$subText};
-  --button-primary-color: #{btnPrimary};
-  --button-primary-hover-color: #{btnPrimaryHover};
+  --button-primary-color: #{$btnPrimary};
+  --button-primary-hover-color: #{$btnPrimaryHover};
   --heart-filled-color: #{$heartFilled};
   --heart-empty-color: #{$heartEmpty};
 }
@@ -64,6 +64,7 @@ h5 {
   font-family: "Lato", "Arial";
   font-size: 20px;
   font-style: normal;
+  font-weight: normal;
   line-height: normal;
   margin: 0;
   color: $text;

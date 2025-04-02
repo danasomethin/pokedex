@@ -17,6 +17,8 @@ const props = defineProps<Props>();
 <style scoped lang="scss">
 .container {
   width: 100%;
+  padding: 12px;
   background-color: var(--card-background-color);
+  border-radius: 8px;
 }
 </style>
