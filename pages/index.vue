@@ -19,6 +19,23 @@
       </v-avatar>
     </template>
   </v-autocomplete>
+
+  <v-row no-gutters>
+    <v-col
+      v-for="(value, i) in items"
+      :key="i"
+      class="card-desktop"
+      cols="12"
+      xxl="2"
+      xl="2"
+      lg="4"
+      md="6"
+      sm="6"
+    >
+      {{ i }}
+      <MainPageGridCards :name="value" />
+    </v-col>
+  </v-row>
 </template>
 
 <script setup lang="ts">
@@ -27,6 +44,16 @@ import Logo from "../assets/icons/magnifying-glass-solid.svg";
 // TODO: call API to get this
 const items: string[] = [
   "California",
+  "Colorado",
+  "Florida",
+  "Georgia",
+  "Texas",
+  "Wyoming",
+  "California",
+  "Colorado",
+  "Florida",
+  "Georgia",
+  "Texas",
   "Colorado",
   "Florida",
   "Georgia",
@@ -48,6 +75,11 @@ const items: string[] = [
     width: 50%;
     height: 50%;
   }
+}
+
+.card-desktop {
+  padding: 12px 13.5px !important;
+  width: 100%;
 }
 
 @media (max-width: 600px) {
