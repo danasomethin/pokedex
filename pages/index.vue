@@ -6,7 +6,7 @@
     :items="items"
     density="compact"
     menu-icon=""
-    bg-color="#EDEDED"
+    bg-color="var(--card-background-color)"
     variant="solo"
     hide-details
     flat
@@ -37,8 +37,9 @@ const items: string[] = [
 
 <style scoped lang="scss">
 .subtitle {
-  margin-block: 12px;
+  margin-bottom: 24px;
 }
+
 .searchbar {
   max-width: 30%;
   min-width: 400px;
@@ -53,5 +54,13 @@ const items: string[] = [
   .searchbar {
     min-width: 100%;
   }
+}
+
+.searchbar :deep(.v-label.v-field-label) {
+  font-family: "Lato", "Arial";
+  font-size: 20px;
+  font-style: normal;
+  line-height: normal;
+  color: var(--subText-color);
 }
 </style>
