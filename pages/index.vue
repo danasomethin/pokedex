@@ -1,4 +1,6 @@
 <template>
-  <h1>Hi</h1>
-  <v-icon icon="mdi-pencil"></v-icon>
+  <span class="title">Pokédex</span>
+  <h5 class="bold">Search for a Pokémon by name or id number</h5>
 </template>
+
+<style scoped lang="scss"></style>

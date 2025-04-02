@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+// Base colors
+$background: #fde68a;
+$cardBackground: #ffffff;
+
+// Text colors
+$text: #0f172a;
+$subText: #94a3b8;
+
+// Button colors
+$btnPrimary: #fbbf24;
+$btnPrimaryHover: #d97706;
+
+// Heart colors
+$heartEmpty: #f1f5f9;
+$heartFilled: #ef4444;
+
+:root {
+  --background-color: #{$background};
+  --card-background-color: #{$cardBackground};
+  --text-color: #{$text};
+  --subText-color: #{$subText};
+  --button-primary-color: #{btnPrimary};
+  --button-primary-hover-color: #{btnPrimaryHover};
+  --heart-filled-color: #{$heartFilled};
+  --heart-empty-color: #{$heartEmpty};
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+body {
+  background: $background;
+}
+
+.title {
+  font-family: "Lato", "Arial";
+  font-size: 62px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  color: $text;
+  display: block;
+  margin-block: 24px;
+}
+
+h1 {
+  font-family: "Lato", "Arial";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  color: $text;
+}
+
+h5 {
+  font-family: "Lato", "Arial";
+  font-size: 20px;
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+  color: $text;
+}
+
+h5.bold {
+  font-family: "Lato", "Arial";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  margin: 0;
+  color: $text;
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 48px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h5 {
+    font-size: 18px;
+  }
+}
