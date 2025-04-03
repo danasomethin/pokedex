@@ -1,10 +1,16 @@
 <template>
-  <div class="container">
+  <div class="container" @click="props.retrieveNewPokemonList">
     <h5 class="bold container__text">Load more</h5>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from "vue";
+interface Props {
+  retrieveNewPokemonList: () => void;
+}
+const props = defineProps<Props>();
+</script>
 
 <style scoped lang="scss">
 .container {

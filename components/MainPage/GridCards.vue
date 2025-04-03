@@ -1,9 +1,9 @@
 <template>
   <div class="container" @click="dialogOpened = true">
-    <h5>{{ props.name }}</h5>
+    <h5>{{ props.pokemonDetails.name }}</h5>
 
     <v-dialog v-model="dialogOpened" class="dialog">
-      <MainPageGridCardInfo :name="props.name" />
+      <MainPageGridCardInfo :name="props.pokemonDetails.name" />
     </v-dialog>
   </div>
 </template>
@@ -12,7 +12,20 @@
 import { defineProps, type Ref, ref } from "vue";
 
 interface Props {
+  pokemonDetails: PokemonDetails;
+}
+interface PokemonDetails {
   name: string;
+  spriteUrl: string;
+
+  height: number | null;
+  weight: number | null;
+  hp: number | null;
+  attack: number | null;
+  defense: number | null;
+  spAttack: number | null;
+  spDefense: number | null;
+  speed: number | null;
 }
 
 const props = defineProps<Props>();
