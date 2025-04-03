@@ -46,6 +46,12 @@
 
 <script setup lang="ts">
 import Logo from "../assets/icons/magnifying-glass-solid.svg";
+import { usePokeApi } from "@/stores/pokeApi.ts";
+import { storeToRefs } from "pinia";
+
+const pokeApi = usePokeApi();
+const { count, doubleCount, name } = storeToRefs(pokeApi);
+const { increment } = pokeApi;
 
 // TODO: call API to get this
 const items: string[] = [
