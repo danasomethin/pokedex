@@ -39,7 +39,7 @@
 
     <!-- Load More button -->
     <v-col class="card" cols="12" xxl="2" xl="2" lg="4" md="6" sm="6">
-      <MainPageLoadMoreGridCards />
+      <MainPageLoadMoreButton />
     </v-col>
   </v-row>
 </template>
