@@ -13,7 +13,9 @@
         />
       </div>
       <div class="grid-container__stats">
-        <h5>{{ props.id }}</h5>
+        <MainPageSubComponentsPokemonStats
+          :pokemonDetails="props.pokemonDetails"
+        />
       </div>
     </div>
   </div>
@@ -39,6 +41,8 @@ const emit = defineEmits(["closeDialog"]);
 .container {
   @extend .container-extend;
   width: 90% !important;
+  max-width: 1000px;
+  max-height: 90vh !important;
 
   &__close-button {
     position: absolute;
@@ -71,7 +75,7 @@ const emit = defineEmits(["closeDialog"]);
   grid-template-rows: auto;
   grid-template-columns: 40% 60%;
   grid-template-areas: "overview stats";
-  width: 100% !important;
+  height: 100% !important;
 
   &__overview {
     grid-area: overview;
@@ -81,19 +85,20 @@ const emit = defineEmits(["closeDialog"]);
   }
   &__stats {
     grid-area: stats;
+    padding: 32px;
   }
 }
 
 @media (max-width: 600px) {
   .container {
     width: 60% !important;
+    max-height: 90vh !important;
   }
   .grid-container {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 100% 100%;
     grid-template-areas: "overview" "stats";
-    width: 100% !important;
   }
 }
 

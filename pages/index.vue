@@ -47,7 +47,7 @@
           md="3"
           sm="4"
         >
-          <MainPageGridCards :id="id" :pokemonDetails="pokemonDetails" />
+          <MainPageGridCard :id="id" :pokemonDetails="pokemonDetails" />
         </v-col>
 
         <!-- Load More button -->
