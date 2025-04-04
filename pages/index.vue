@@ -33,23 +33,24 @@
       </v-autocomplete>
 
       <!-- Populate all Pokemon in cards -->
+      <!-- {{ $vuetify.display }} -->
       <v-row no-gutters>
         <v-col
           v-for="(pokemonDetails, id) in allPokemonDetails"
           :key="id"
           class="card"
           cols="12"
-          xxl="2"
+          xxl="1"
           xl="2"
-          lg="4"
-          md="6"
-          sm="6"
+          lg="2"
+          md="3"
+          sm="4"
         >
           <MainPageGridCards :id="id" :pokemonDetails="pokemonDetails" />
         </v-col>
 
         <!-- Load More button -->
-        <v-col class="card" cols="12" xxl="2" xl="2" lg="4" md="6" sm="6">
+        <v-col class="card" cols="12" xxl="1" xl="2" lg="2" md="3" sm="4">
           <MainPageLoadMoreButton
             :retrieveNewPokemonList="retrieveLatestPokemonList"
           />
@@ -62,6 +63,7 @@
 <script setup lang="ts">
 import { type Ref, ref, watchEffect } from "vue";
 
+import type { PokemonDetails } from "~/types/chosenData";
 import Logo from "../assets/icons/magnifying-glass-solid.svg";
 
 import { usePokeApi } from "@/stores/pokeApi.ts";
@@ -153,20 +155,6 @@ interface PokemonList {
 interface AllPokemonDetails {
   [key: number]: PokemonDetails;
 }
-
-interface PokemonDetails {
-  name: string;
-  spriteUrl: string;
-
-  height: number | null;
-  weight: number | null;
-  hp: number | null;
-  attack: number | null;
-  defense: number | null;
-  spAttack: number | null;
-  spDefense: number | null;
-  speed: number | null;
-}
 </script>
 
 <style scoped lang="scss">
@@ -205,7 +193,6 @@ interface PokemonDetails {
   padding: 12px 13.5px !important;
   width: 100%;
   display: flex;
-  border: 1px solid black;
 }
 
 @media (max-width: 600px) {

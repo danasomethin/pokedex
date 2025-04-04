@@ -1,5 +1,6 @@
 import { type Ref, ref } from "vue";
 import { defineStore } from "pinia";
+import type { PokemonDetails } from "~/types/chosenData";
 
 export const usePokeApi = defineStore("pokeApi", () => {
   const baseUrl: string = `https://pokeapi.co/api/v2/`;
@@ -141,24 +142,14 @@ interface PokemonListResults {
   url: string;
 }
 
+/* All Pokemon IDs along with their details */
 interface AllPokemonDetails {
   [key: number]: PokemonDetails;
 }
 
-interface PokemonDetails {
-  name: string;
-  spriteUrl: string;
-
-  height: number | null;
-  weight: number | null;
-  hp: number | null;
-  attack: number | null;
-  defense: number | null;
-  spAttack: number | null;
-  spDefense: number | null;
-  speed: number | null;
-}
-
+/*
+  Pokemon stats where the name is given and the value needs to be updated
+*/
 interface PokemonStats {
   hp: PokemonStatsValueName;
   attack: PokemonStatsValueName;
@@ -173,6 +164,9 @@ interface PokemonStatsValueName {
   value: null | number;
 }
 
+/*
+  Stats API type
+*/
 interface PokemonApiStats {
   base_stat: number;
   effort: number;
