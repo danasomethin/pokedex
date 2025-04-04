@@ -1,11 +1,15 @@
 <template>
   <div class="container">
+    <div @click="$emit('closeDialog')" class="container__close-button">
+      <img :src="CloseLogo" />
+    </div>
+
     <div class="grid-container">
       <div class="grid-container__overview">
         <MainPageSubComponentsPokemonOverview
           :id="props.id"
           :pokemonDetails="props.pokemonDetails"
-          :isSmall="false"
+          :isSmall="$vuetify.display.width > 970 ? false : true"
         />
       </div>
       <div class="grid-container__stats">
@@ -16,8 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
 import type { PokemonDetails } from "~/types/chosenData";
+import CloseLogo from "../assets/icons/xmark-solid.svg";
 
 interface Props {
   id: string;
@@ -25,12 +30,40 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+
+// Emit to close dialog
+const emit = defineEmits(["closeDialog"]);
 </script>
 
 <style scoped lang="scss">
 .container {
   @extend .container-extend;
   width: 90% !important;
+
+  &__close-button {
+    position: absolute;
+    right: 0;
+    transform: translate(50%, -50%);
+
+    width: 5%;
+    min-width: 40px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    background-color: var(--button-primary-color);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: var(--button-primary-hover-color);
+    }
+
+    img {
+      width: 50%;
+    }
+  }
 }
 
 .grid-container {
@@ -68,5 +101,6 @@ const props = defineProps<Props>();
   background-color: var(--heart-empty-color) !important;
   border-radius: 8px;
   padding: 0 !important;
+  position: relative;
 }
 </style>

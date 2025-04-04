@@ -54,6 +54,7 @@ const formattedID = function (): string {
 
   &__name {
     text-transform: capitalize;
+    text-align: center;
   }
 
   &__id {

@@ -10,6 +10,7 @@
       <MainPageGridCardInfo
         :id="props.id"
         :pokemonDetails="props.pokemonDetails"
+        @closeDialog="dialogOpened = false"
       />
     </v-dialog>
   </div>

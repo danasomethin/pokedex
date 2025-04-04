@@ -27,13 +27,13 @@
       >
         <template v-slot:append-inner>
           <v-avatar>
-            <img class="searchbar__svg" :src="Logo" />
+            <img class="searchbar__svg" :src="SearchLogo" />
           </v-avatar>
         </template>
       </v-autocomplete>
 
       <!-- Populate all Pokemon in cards -->
-      <!-- {{ $vuetify.display }} -->
+      {{ $vuetify.display }}
       <v-row no-gutters>
         <v-col
           v-for="(pokemonDetails, id) in allPokemonDetails"
@@ -64,7 +64,7 @@
 import { type Ref, ref, watchEffect } from "vue";
 
 import type { PokemonDetails } from "~/types/chosenData";
-import Logo from "../assets/icons/magnifying-glass-solid.svg";
+import SearchLogo from "../assets/icons/magnifying-glass-solid.svg";
 
 import { usePokeApi } from "@/stores/pokeApi.ts";
 import { storeToRefs } from "pinia";
