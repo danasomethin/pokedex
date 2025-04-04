@@ -11,7 +11,7 @@
               i % 2 === 0 ? 'var(--card-background-color)' : '#f8fafc',
           }"
         >
-          <h5>{{ v }}</h5>
+          <h5 class="bold">{{ v }}</h5>
         </span>
         <span
           class="grid-container__stat-value"
@@ -20,7 +20,7 @@
               i % 2 === 0 ? 'var(--card-background-color)' : '#f8fafc',
           }"
         >
-          <h5>{{ props.pokemonDetails[k] }}</h5>
+          <h5 class="bold">{{ props.pokemonDetails[k] }}</h5>
         </span>
       </div>
     </div>

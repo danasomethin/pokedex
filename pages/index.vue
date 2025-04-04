@@ -1,6 +1,6 @@
 <template>
   <header>
-    <span class="title">Pokédex</span>
+    <span class="title title-margin">Pokédex</span>
   </header>
   <body>
     <div
@@ -159,6 +159,10 @@ interface AllPokemonDetails {
 </script>
 
 <style scoped lang="scss">
+.title-margin {
+  margin-block: 24px;
+}
+
 .container-no-items {
   display: flex;
   width: 100%;

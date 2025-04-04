@@ -9,7 +9,12 @@
         <MainPageSubComponentsPokemonOverview
           :id="props.id"
           :pokemonDetails="props.pokemonDetails"
-          :smallText="$vuetify.display.width > 970 ? false : true"
+          :textH1="
+            $vuetify.display.width < 1315 && $vuetify.display.width > 1100
+              ? true
+              : false
+          "
+          :textH5="$vuetify.display.width < 1100 ? true : false"
         />
       </div>
       <div class="grid-container__stats">
@@ -41,7 +46,7 @@ const emit = defineEmits(["closeDialog"]);
 .container {
   @extend .container-extend;
   width: 90% !important;
-  max-width: 1000px;
+  max-width: 1400px;
   max-height: 90vh !important;
 
   &__close-button {
@@ -99,6 +104,13 @@ const emit = defineEmits(["closeDialog"]);
     grid-template-rows: auto;
     grid-template-columns: 100% 100%;
     grid-template-areas: "overview" "stats";
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-container__stats {
+    grid-area: stats;
+    padding: 6% 6%;
   }
 }
 

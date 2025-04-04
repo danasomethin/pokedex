@@ -6,7 +6,6 @@
   <div class="container-data">
     <v-img
       :width="4000"
-      cover
       :src="props.pokemonDetails.spriteUrl"
       :lazy-src="PokeBall"
       :alt="props.pokemonDetails.name"
@@ -21,18 +20,25 @@
       </template>
     </v-img>
 
-    <div v-if="props.smallText" class="container-data__text">
+    <div v-if="props.textH5" class="container-data__text">
       <h5 class="container-data__text__name bold">
         {{ props.pokemonDetails.name }}
       </h5>
       <h5 class="container-data__text__id bold">{{ formattedID() }}</h5>
     </div>
 
-    <div v-else class="container-data__text">
+    <div v-else-if="props.textH1" class="container-data__text">
       <h1 class="container-data__text__name bold">
         {{ props.pokemonDetails.name }}
       </h1>
       <h1 class="container-data__text__id bold">{{ formattedID() }}</h1>
+    </div>
+
+    <div v-else class="container-data__text">
+      <span class="container-data__text__name title">
+        {{ props.pokemonDetails.name }}
+      </span>
+      <span class="container-data__text__id title">{{ formattedID() }}</span>
     </div>
   </div>
 </template>
@@ -45,7 +51,8 @@ import PokeBall from "../assets/images/Poke_Ball.webp";
 interface Props {
   id: string;
   pokemonDetails: PokemonDetails;
-  smallText: boolean;
+  textH1: boolean;
+  textH5: boolean;
 }
 
 const props = defineProps<Props>();
@@ -65,7 +72,7 @@ const formattedID = function (): string {
 
 .container-data {
   @extend .flexbox-column-center;
-
+  height: 90%;
   img {
     width: 90%;
   }
