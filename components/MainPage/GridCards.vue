@@ -3,7 +3,7 @@
     <MainPageSubComponentsPokemonOverview
       :id="props.id"
       :pokemonDetails="props.pokemonDetails"
-      :isSmall="true"
+      :smallText="true"
     />
     <!-- Dialog to open up pokemon info -->
     <v-dialog v-model="dialogOpened" class="dialog">

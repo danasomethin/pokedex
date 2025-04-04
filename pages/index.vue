@@ -32,8 +32,9 @@
         </template>
       </v-autocomplete>
 
+      <!-- {{ $vuetify.display }} -->
+
       <!-- Populate all Pokemon in cards -->
-      {{ $vuetify.display }}
       <v-row no-gutters>
         <v-col
           v-for="(pokemonDetails, id) in allPokemonDetails"

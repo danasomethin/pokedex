@@ -9,7 +9,7 @@
         <MainPageSubComponentsPokemonOverview
           :id="props.id"
           :pokemonDetails="props.pokemonDetails"
-          :isSmall="$vuetify.display.width > 970 ? false : true"
+          :smallText="$vuetify.display.width > 970 ? false : true"
         />
       </div>
       <div class="grid-container__stats">
