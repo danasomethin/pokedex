@@ -37,10 +37,6 @@ const dialogOpened: Ref<boolean> = ref(false);
   padding: 12px 5% 24px 5%;
   background-color: var(--card-background-color);
   border-radius: 8px;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .dialog:deep(.v-overlay__content) {
