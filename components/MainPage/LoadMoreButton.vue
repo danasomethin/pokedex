@@ -1,6 +1,6 @@
 <template>
   <div class="container" @click="props.retrieveNewPokemonList">
-    <h5 class="bold container__text">Load more</h5>
+    <h5>Load more</h5>
   </div>
 </template>
 
@@ -19,13 +19,13 @@ const props = defineProps<Props>();
   border-radius: 8px;
   padding: 12px;
 
-  &__text {
+  h5 {
     text-align: center;
   }
-}
 
-.container:hover {
-  background-color: var(--button-primary-hover-color);
-  cursor: pointer;
+  :hover {
+    background-color: var(--button-primary-hover-color);
+    cursor: pointer;
+  }
 }
 </style>

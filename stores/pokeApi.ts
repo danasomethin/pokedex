@@ -1,4 +1,4 @@
-import { type Ref, ref, type ComputedRef, computed } from "vue";
+import { type Ref, ref } from "vue";
 import { defineStore } from "pinia";
 
 export const usePokeApi = defineStore("pokeApi", () => {

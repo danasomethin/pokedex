@@ -8,7 +8,7 @@
       class="container-no-items"
     >
       <v-progress-circular indeterminate />
-      <h5 class="container-no-items__text">Loading...</h5>
+      <h5>Loading...</h5>
     </div>
 
     <div v-else>
@@ -177,7 +177,7 @@ interface PokemonDetails {
   justify-content: center;
   align-items: center;
 
-  &__text {
+  h5 {
     margin-left: 12px;
   }
 }
@@ -191,6 +191,14 @@ interface PokemonDetails {
     width: 50%;
     height: 50%;
   }
+
+  &:deep(.v-label.v-field-label) {
+    font-family: "Lato", "Arial";
+    font-size: 20px;
+    font-style: normal;
+    line-height: normal;
+    color: var(--subText-color);
+  }
 }
 
 .card {
@@ -203,14 +211,14 @@ interface PokemonDetails {
 @media (max-width: 600px) {
   .searchbar {
     min-width: 100%;
-  }
-}
 
-.searchbar :deep(.v-label.v-field-label) {
-  font-family: "Lato", "Arial";
-  font-size: 20px;
-  font-style: normal;
-  line-height: normal;
-  color: var(--subText-color);
+    &:deep(.v-label.v-field-label) {
+      font-family: "Lato", "Arial";
+      font-size: 16px;
+      font-style: normal;
+      line-height: normal;
+      color: var(--subText-color);
+    }
+  }
 }
 </style>
