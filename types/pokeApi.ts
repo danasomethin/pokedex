@@ -1,23 +1,23 @@
-export interface PokemonDetails {
-  name: string;
-  spriteUrl: string;
-
-  height: number | null;
-  weight: number | null;
-  hp: number | null;
-  attack: number | null;
-  defense: number | null;
-  spAttack: number | null;
-  spDefense: number | null;
-  speed: number | null;
+export interface PokeApiPokemonList {
+  count: number;
+  next: null | string;
+  previous: null | string;
+  results: PokemonListResults[];
 }
 
-export type HeightWeightKeys = "height" | "weight";
+interface PokemonListResults {
+  name: string;
+  url: string;
+}
 
-export type StatsKeys =
-  | "hp"
-  | "attack"
-  | "defense"
-  | "spAttack"
-  | "spDefense"
-  | "speed";
+/*
+  Stats API type
+*/
+export interface PokeApiStats {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+}

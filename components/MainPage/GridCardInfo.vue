@@ -50,8 +50,6 @@ const emit = defineEmits(["closeDialog"]);
 <style scoped lang="scss">
 .container {
   @extend .container-extend;
-  width: 90% !important;
-  max-width: 1400px;
   max-height: 90vh !important;
 
   &__close-button {

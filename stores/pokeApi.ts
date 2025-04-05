@@ -1,6 +1,7 @@
 import { type Ref, ref } from "vue";
 import { defineStore } from "pinia";
 import type { PokemonDetails } from "~/types/chosenData";
+import type { PokeApiPokemonList, PokeApiStats } from "~/types/pokeApi";
 
 export const usePokeApi = defineStore("pokeApi", () => {
   const baseUrl: string = `https://pokeapi.co/api/v2/`;
@@ -15,7 +16,7 @@ export const usePokeApi = defineStore("pokeApi", () => {
   */
   async function getLatestPokemonList(
     apiUrl: string
-  ): Promise<null | PokemonList> {
+  ): Promise<null | PokeApiPokemonList> {
     try {
       // Retrieve latest pokemon list from URL
       const response = await fetch(apiUrl, {
@@ -29,7 +30,7 @@ export const usePokeApi = defineStore("pokeApi", () => {
         return null;
       }
 
-      const responseData = (await response.json()) as PokemonList;
+      const responseData = (await response.json()) as PokeApiPokemonList;
       return responseData;
     } catch (err) {
       console.error(err);
@@ -98,8 +99,7 @@ export const usePokeApi = defineStore("pokeApi", () => {
     if (responseData.stats) {
       Object.entries(pokemonStats).forEach(([_, stat]) => {
         const matchingStat = responseData.stats.find(
-          (statResponse: PokemonApiStats) =>
-            statResponse.stat.name === stat.name
+          (statResponse: PokeApiStats) => statResponse.stat.name === stat.name
         );
 
         if (matchingStat) {
@@ -129,19 +129,6 @@ export const usePokeApi = defineStore("pokeApi", () => {
   };
 });
 
-/* Pokemon List */
-interface PokemonList {
-  count: number;
-  next: null | string;
-  previous: null | string;
-  results: PokemonListResults[];
-}
-
-interface PokemonListResults {
-  name: string;
-  url: string;
-}
-
 /* All Pokemon IDs along with their details */
 interface AllPokemonDetails {
   [key: number]: PokemonDetails;
@@ -162,16 +149,4 @@ interface PokemonStats {
 interface PokemonStatsValueName {
   name: string;
   value: null | number;
-}
-
-/*
-  Stats API type
-*/
-interface PokemonApiStats {
-  base_stat: number;
-  effort: number;
-  stat: {
-    name: string;
-    url: string;
-  };
 }

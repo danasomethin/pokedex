@@ -7,7 +7,12 @@
       :textH5="true"
     />
     <!-- Dialog to open up pokemon info -->
-    <v-dialog v-model="dialogOpened" class="dialog">
+    <v-dialog
+      v-model="dialogOpened"
+      max-width="1400"
+      :persistent="$vuetify.display.width <= 600 ? true : false"
+      class="dialog"
+    >
       <MainPageGridCardInfo
         :id="props.id"
         :pokemonDetails="props.pokemonDetails"
@@ -42,5 +47,6 @@ const dialogOpened: Ref<boolean> = ref(false);
 .dialog:deep(.v-overlay__content) {
   display: flex;
   align-items: center;
+  width: 80%;
 }
 </style>

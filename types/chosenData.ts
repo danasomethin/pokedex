@@ -1,4 +1,4 @@
-export type PokemonDetails = {
+export interface PokemonDetails {
   name: string;
   spriteUrl: string;
 
@@ -10,4 +10,4 @@ export type PokemonDetails = {
   spAttack: number | null;
   spDefense: number | null;
   speed: number | null;
-};
+}

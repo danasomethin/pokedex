@@ -1,12 +1,14 @@
 <template>
-  <div class="icon-heart" @click.stop="toggleFavourite(props.id)">
+  <div class="container-icon-heart">
     <IconsHeartSolid
+      @click.stop="toggleFavourite(props.id)"
       :color="
         isPokemonInFavourites(props.id)
           ? 'var(--heart-filled-color)'
           : 'var(--heart-empty-color)'
       "
       size="15%"
+      class="container-icon-heart__icon"
     />
   </div>
 
@@ -73,12 +75,14 @@ const formattedID = function (): string {
 </script>
 
 <style scoped lang="scss">
-.icon-heart {
+.container-icon-heart {
   width: 100%;
   display: flex;
   justify-content: end;
-  &:hover {
-    cursor: pointer;
+  &__icon {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
