@@ -54,6 +54,7 @@
         <v-col class="card" cols="12" xxl="1" xl="2" lg="2" md="3" sm="4">
           <MainPageLoadMoreButton
             :retrieveNewPokemonList="retrieveLatestPokemonList"
+            :isLoading="isLoadingLoadMore"
           />
         </v-col>
       </v-row>
@@ -122,26 +123,29 @@ const items: string[] = [
   "Georgia",
   "Texas",
   "Wyoming",
-  "California",
-  "Colorado",
-  "Florida",
-  "Georgia",
-  "Texas",
-  "Colorado",
-  "Florida",
-  "Georgia",
-  "Texas",
-  "Wyoming",
+  "Liverpool",
+  "Manchester",
 ];
+
+// Loader for Load More button
+const isLoadingLoadMore: Ref<boolean> = ref(false);
 
 // Get latest pokemon list
 const retrieveLatestPokemonList = async function (): void {
+  isLoadingLoadMore.value = true;
   let apiUrl: string = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
   if (latestPokemonList.value !== null) {
     apiUrl = latestPokemonList.value.next;
   }
 
-  latestPokemonList.value = await getLatestPokemonList(apiUrl);
+  try {
+    latestPokemonList.value = await getLatestPokemonList(apiUrl);
+  } catch (error) {
+    console.error("Error retrieving Pokemon list:", error);
+    isLoadingLoadMore.value = false;
+  } finally {
+    isLoadingLoadMore.value = false;
+  }
 };
 
 await retrieveLatestPokemonList();

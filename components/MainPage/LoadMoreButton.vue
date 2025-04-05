@@ -1,7 +1,15 @@
 <template>
   <div class="container">
-    <span class="button" @click="props.retrieveNewPokemonList">
+    <span
+      v-if="!isLoading"
+      class="button"
+      @click="props.retrieveNewPokemonList"
+    >
       <h5>Load more</h5>
+    </span>
+    <span v-else class="button">
+      <h5>Loading...</h5>
+      <v-progress-circular color="grey-lighten-4" indeterminate />
     </span>
   </div>
 </template>
@@ -10,6 +18,7 @@
 import { defineProps } from "vue";
 interface Props {
   retrieveNewPokemonList: () => void;
+  isLoading: boolean;
 }
 const props = defineProps<Props>();
 </script>
