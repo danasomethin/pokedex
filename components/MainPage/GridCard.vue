@@ -1,11 +1,13 @@
 <template>
   <div class="container" @click="dialogOpened = true">
+    <!-- Shows an overview of the pokemon -->
     <MainPageSubComponentsPokemonOverview
       :id="props.id"
       :pokemonDetails="props.pokemonDetails"
       :textH1="false"
       :textH5="true"
     />
+
     <!-- Dialog to open up pokemon info -->
     <v-dialog
       v-model="dialogOpened"
@@ -13,6 +15,7 @@
       :persistent="$vuetify.display.width <= 600 ? true : false"
       class="dialog"
     >
+      <!-- Show Pokemon info -->
       <MainPageGridCardInfo
         :id="props.id"
         :pokemonDetails="props.pokemonDetails"

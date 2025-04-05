@@ -4,6 +4,7 @@
 
     <div v-for="(v, k, i) in statsLabel" :key="i">
       <div class="grid-container">
+        <!-- Stat title -->
         <span
           class="grid-container__stat-name"
           :style="{
@@ -13,6 +14,8 @@
         >
           <h5 class="bold">{{ v }}</h5>
         </span>
+
+        <!-- Stat value -->
         <span
           class="grid-container__stat-value"
           :style="{
@@ -20,7 +23,7 @@
               i % 2 === 0 ? 'var(--card-background-color)' : '#f8fafc',
           }"
         >
-          <h5 class="bold">{{ props.pokemonDetails[k] }}</h5>
+          <h5 class="bold">{{ props.pokemonDetails[k] ?? "N/A" }}</h5>
         </span>
       </div>
     </div>
@@ -40,6 +43,7 @@ interface StatsLabel {
   [key in StatsKeys]: string;
 }
 
+// keys hold the title of the stats to be displayed.
 const statsLabel: StatsLabel = {
   height: "Height",
   weight: "Weight",

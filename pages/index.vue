@@ -2,6 +2,7 @@
   <header>
     <span class="title title-margin">Pokédex</span>
   </header>
+
   <body>
     <div
       v-if="Object.keys(allPokemonDetails).length === 0"
@@ -12,6 +13,7 @@
     </div>
 
     <div v-else>
+      <!-- Searchbar -->
       <h5 class="bold">Search for a Pokémon by name or id number</h5>
       <v-autocomplete
         label="Name or id number"
@@ -32,9 +34,7 @@
         </template>
       </v-autocomplete>
 
-      <!-- {{ $vuetify.display }} -->
-
-      <!-- Populate all Pokemon in cards -->
+      <!-- Populate all Pokemon in cards, placed on a grid -->
       <v-row no-gutters>
         <v-col
           v-for="(pokemonDetails, id) in allPokemonDetails"
@@ -66,6 +66,8 @@
 import { type Ref, ref, watchEffect } from "vue";
 
 import type { PokemonDetails } from "~/types/chosenData";
+import type { PokeApiPokemonList } from "~/types/pokeApi";
+
 import SearchLogo from "../assets/icons/magnifying-glass-solid.svg";
 
 import { usePokeApi } from "@/stores/pokeApi.ts";
@@ -76,19 +78,31 @@ const pokeApi = usePokeApi();
 const { allPokemonDetails } = storeToRefs(pokeApi);
 const { getLatestPokemonList, getPokemonDetails } = pokeApi;
 
-// List of Pokemon, getAllPokemon() updates this.
-const latestPokemonList: Ref<PokemonList | null> = ref(null);
+// List of Pokemon on the front page, getAllPokemon() updates this.
+const latestPokemonList: Ref<PokeApiPokemonList | null> = ref(null);
+
+// Loader for Load More button
+const isLoadingLoadMore: Ref<boolean> = ref(false);
 
 /*
-  Returns null or the id of the Pokemon from the URL
+  Get the front page latest pokemon by updating latestPokemonList
+  Triggers the Loader for Load More button
 */
-const getId = function (url: string): null | number {
-  const matches: RegExpMatchArray | null = url.match(new RegExp("/(\\d+)/$"));
-  if (matches === null || matches.length < 2) {
-    return null;
+const retrieveLatestPokemonList = async function (): void {
+  isLoadingLoadMore.value = true;
+
+  let apiUrl: string = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
+  if (latestPokemonList.value !== null) {
+    apiUrl = latestPokemonList.value.next;
   }
-  const id = matches[1];
-  return Number(id);
+
+  try {
+    latestPokemonList.value = await getLatestPokemonList(apiUrl);
+  } catch (error) {
+    console.error("Error retrieving Pokemon list:", error);
+  } finally {
+    isLoadingLoadMore.value = false;
+  }
 };
 
 /*
@@ -99,6 +113,7 @@ watchEffect(async () => {
   if (!latestPokemonList.value) {
     return;
   }
+
   // Update all PokemonDetails object by calling API
   latestPokemonList.value.results.forEach(async (item) => {
     // Get key ready as id
@@ -115,7 +130,21 @@ watchEffect(async () => {
   });
 });
 
-// TODO: call API to get this
+/*
+  Returns null or the id (as a number) of the Pokemon from the URL
+*/
+const getId = function (url: string): null | number {
+  const matches: RegExpMatchArray | null = url.match(new RegExp("/(\\d+)/$"));
+  if (matches === null || matches.length < 2) {
+    return null;
+  }
+  const id = matches[1];
+  return Number(id);
+};
+
+/*
+  TODO: call API to get items for searchbar
+*/
 const items: string[] = [
   "California",
   "Colorado",
@@ -127,39 +156,8 @@ const items: string[] = [
   "Manchester",
 ];
 
-// Loader for Load More button
-const isLoadingLoadMore: Ref<boolean> = ref(false);
-
-// Get latest pokemon list
-const retrieveLatestPokemonList = async function (): void {
-  isLoadingLoadMore.value = true;
-  let apiUrl: string = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
-  if (latestPokemonList.value !== null) {
-    apiUrl = latestPokemonList.value.next;
-  }
-
-  try {
-    latestPokemonList.value = await getLatestPokemonList(apiUrl);
-  } catch (error) {
-    console.error("Error retrieving Pokemon list:", error);
-    isLoadingLoadMore.value = false;
-  } finally {
-    isLoadingLoadMore.value = false;
-  }
-};
-
+// Retrieves the first 10 Pokemon
 await retrieveLatestPokemonList();
-
-interface PokemonList {
-  count: number;
-  next: null | string;
-  previous: null | string;
-  results: PokemonListResults[];
-}
-
-interface AllPokemonDetails {
-  [key: number]: PokemonDetails;
-}
 </script>
 
 <style scoped lang="scss">

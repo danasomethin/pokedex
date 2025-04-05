@@ -7,6 +7,7 @@
     >
       <h5>Load more</h5>
     </span>
+
     <span v-else class="button">
       <h5>Loading...</h5>
       <v-progress-circular color="grey-lighten-4" indeterminate />
@@ -28,6 +29,7 @@ const props = defineProps<Props>();
   @extend .center;
   width: 100%;
 }
+
 .button {
   @extend .center;
 

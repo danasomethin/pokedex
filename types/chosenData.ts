@@ -1,6 +1,7 @@
+// Data wanted for index page
 export interface PokemonDetails {
   name: string;
-  spriteUrl: string;
+  spriteUrl: string | null;
 
   height: number | null;
   weight: number | null;

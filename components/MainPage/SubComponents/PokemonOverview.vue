@@ -26,6 +26,7 @@
       </template>
     </v-img>
 
+    <!-- Pokemon names in different fonts -->
     <div v-if="props.textH5" class="container-data__text">
       <h5 class="container-data__text__name bold">
         {{ props.pokemonDetails.name }}
@@ -68,6 +69,9 @@ interface Props {
 
 const props = defineProps<Props>();
 
+/*
+  Formats props.id into a 4 digit string
+*/
 const formattedID = function (): string {
   let s = `000${props.id}`;
   return s.substr(s.length - 4);

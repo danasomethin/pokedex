@@ -5,6 +5,7 @@
     </div>
 
     <div class="grid-container">
+      <!-- Pokemon overview -->
       <div class="grid-container__overview">
         <MainPageSubComponentsPokemonOverview
           :id="props.id"
@@ -22,6 +23,8 @@
           "
         />
       </div>
+
+      <!-- Pokemon stats -->
       <div class="grid-container__stats">
         <MainPageSubComponentsPokemonStats
           :pokemonDetails="props.pokemonDetails"

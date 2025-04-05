@@ -4,7 +4,7 @@ import type { PokemonDetails } from "~/types/chosenData";
 import type { PokeApiPokemonList, PokeApiStats } from "~/types/pokeApi";
 
 export const usePokeApi = defineStore("pokeApi", () => {
-  const baseUrl: string = `https://pokeapi.co/api/v2/`;
+  // const baseUrl: string = `https://pokeapi.co/api/v2/`;
 
   // Object of Pokemon by ID, and its details.
   const allPokemonDetails: Ref<AllPokemonDetails> = ref(
@@ -12,7 +12,8 @@ export const usePokeApi = defineStore("pokeApi", () => {
   );
 
   /*
-      API: Get pokemons starting from `offset`
+      API: Get Pokemons starting from API link
+      Link format -- https://pokeapi.co/api/v2/pokemon?limit=10&offset=0
   */
   async function getLatestPokemonList(
     apiUrl: string
@@ -39,7 +40,7 @@ export const usePokeApi = defineStore("pokeApi", () => {
   }
 
   /*
-      API: Get Pokemon details and update pokemonDetails
+      API: Get Pokemon details and updates the allPokemonDetails
   */
   async function getPokemonDetails(id: number, url: string): Promise<boolean> {
     try {
@@ -68,7 +69,7 @@ export const usePokeApi = defineStore("pokeApi", () => {
     Parse for Pokemon details that is only needed
   */
   function parsePokemonDetails(responseData: any): PokemonDetails {
-    // Fill pokemonStats.value with responseData.stats using the pokemonStats.name
+    // Fill pokemonStats with responseData.stats using the pokemonStats.name
     let pokemonStats: PokemonStats = {
       hp: {
         name: "hp",
@@ -110,9 +111,9 @@ export const usePokeApi = defineStore("pokeApi", () => {
 
     return {
       name: responseData.name ?? ("N/A" as string),
-      spriteUrl: responseData.sprites?.front_default ?? ("N/A" as string),
-      height: responseData.height ?? ("N/A" as string),
-      weight: responseData.weight ?? ("N/A" as string),
+      spriteUrl: responseData.sprites?.front_default ?? null,
+      height: responseData.height ?? null,
+      weight: responseData.weight ?? null,
       hp: pokemonStats.hp.value ?? null,
       attack: pokemonStats.attack.value ?? null,
       defense: pokemonStats.defense.value ?? null,
