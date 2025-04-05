@@ -1,6 +1,13 @@
 <template>
-  <div class="icon-heart">
-    <IconsHeartSolid color="var(--heart-filled-color)" size="15%" />
+  <div class="icon-heart" @click.stop="toggleFavourite(props.id)">
+    <IconsHeartSolid
+      :color="
+        isPokemonInFavourites(props.id)
+          ? 'var(--heart-filled-color)'
+          : 'var(--heart-empty-color)'
+      "
+      size="15%"
+    />
   </div>
 
   <div class="container-data">
@@ -45,8 +52,13 @@
 
 <script setup lang="ts">
 import { defineProps, type Ref, ref } from "vue";
+import { useUserData } from "@/stores/userData.ts";
 import type { PokemonDetails } from "~/types/chosenData";
 import PokeBall from "../assets/images/Poke_Ball.webp";
+
+// Call for UserData Pinia store
+const userData = useUserData();
+const { isPokemonInFavourites, toggleFavourite } = userData;
 
 interface Props {
   id: string;
@@ -68,6 +80,9 @@ const formattedID = function (): string {
   width: 100%;
   display: flex;
   justify-content: end;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .container-data {
