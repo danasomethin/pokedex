@@ -63,20 +63,14 @@ h5 {
   font-family: "Lato", "Arial";
   font-size: 20px;
   font-style: normal;
-  font-weight: normal;
   line-height: normal;
   margin: 0;
   color: $text;
 }
 
 h5.bold {
-  font-family: "Lato", "Arial";
-  font-size: 20px;
-  font-style: normal;
+  @extend h5;
   font-weight: bold;
-  line-height: normal;
-  margin: 0;
-  color: $text;
 }
 
 @media screen and (max-width: 600px) {
@@ -89,6 +83,6 @@ h5.bold {
   }
 
   h5 {
-    font-size: 18px;
+    font-size: 16px;
   }
 }

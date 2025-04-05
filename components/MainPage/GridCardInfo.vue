@@ -10,11 +10,16 @@
           :id="props.id"
           :pokemonDetails="props.pokemonDetails"
           :textH1="
-            $vuetify.display.width < 1315 && $vuetify.display.width > 1100
+            ($vuetify.display.width < 1315 && $vuetify.display.width > 1100) ||
+            $vuetify.display.width <= 600
               ? true
               : false
           "
-          :textH5="$vuetify.display.width < 1100 ? true : false"
+          :textH5="
+            $vuetify.display.width < 1100 && $vuetify.display.width > 600
+              ? true
+              : false
+          "
         />
       </div>
       <div class="grid-container__stats">
@@ -104,6 +109,10 @@ const emit = defineEmits(["closeDialog"]);
     grid-template-rows: auto;
     grid-template-columns: 100% 100%;
     grid-template-areas: "overview" "stats";
+    &__stats {
+      grid-area: stats;
+      padding: 24px 12px;
+    }
   }
 }
 

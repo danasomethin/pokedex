@@ -83,9 +83,20 @@ const statsLabel: StatsLabel = {
   padding: 8px 24px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .grid-items-padding {
-    padding: 8px 12px;
+    padding: 8px 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-rows: minmax(auto, 1fr);
+    column-gap: 2%;
+    grid-template-columns: 60% 38%;
+    grid-template-areas: "stat-name stat-value";
+    margin-top: 1%;
   }
 }
 </style>
