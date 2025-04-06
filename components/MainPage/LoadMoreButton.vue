@@ -1,16 +1,12 @@
 <template>
   <div class="container">
-    <span
-      v-if="!isLoading"
-      class="button"
-      @click="props.retrieveNewPokemonList"
-    >
-      <h5>Load more</h5>
+    <span v-if="isLoading" class="button" @click="props.retrieveNewPokemonList">
+      <h5 class="bold">Load more</h5>
     </span>
 
     <span v-else class="button">
       <h5>Loading...</h5>
-      <v-progress-circular color="grey-lighten-4" indeterminate />
+      <v-progress-circular indeterminate class="button__loader" />
     </span>
   </div>
 </template>
@@ -38,6 +34,10 @@ const props = defineProps<Props>();
   background-color: var(--button-primary-color);
   border-radius: 8px;
   padding: 12px;
+
+  &__loader {
+    margin-left: 4px;
+  }
 
   &:hover {
     background-color: var(--button-primary-hover-color);

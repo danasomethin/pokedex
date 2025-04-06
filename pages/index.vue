@@ -64,25 +64,19 @@
 
 <script setup lang="ts">
 import { type Ref, ref, watchEffect } from "vue";
-
 import type { PokemonDetails } from "~/types/chosenData";
 import type { PokeApiPokemonList } from "~/types/pokeApi";
-
-import SearchLogo from "../assets/icons/magnifying-glass-solid.svg";
-
 import { usePokeApi } from "@/stores/pokeApi.ts";
 import { storeToRefs } from "pinia";
+import SearchLogo from "../assets/icons/magnifying-glass-solid.svg";
 
 // Call for PokeApi Pinia store
 const pokeApi = usePokeApi();
 const { allPokemonDetails } = storeToRefs(pokeApi);
 const { getLatestPokemonList, getPokemonDetails } = pokeApi;
 
-// List of Pokemon on the front page, getAllPokemon() updates this.
-const latestPokemonList: Ref<PokeApiPokemonList | null> = ref(null);
-
-// Loader for Load More button
-const isLoadingLoadMore: Ref<boolean> = ref(false);
+const latestPokemonList: Ref<PokeApiPokemonList | null> = ref(null); // List of Pokemon on the front page, getAllPokemon() updates this.
+const isLoadingLoadMore: Ref<boolean> = ref(false); // Loader for Load More button
 
 /*
   Get the front page latest pokemon by updating latestPokemonList
@@ -99,7 +93,7 @@ const retrieveLatestPokemonList = async function (): void {
   try {
     latestPokemonList.value = await getLatestPokemonList(apiUrl);
   } catch (error) {
-    console.error("Error retrieving Pokemon list:", error);
+    console.error(`Error retrieving Pokemon list: ${error}`);
   } finally {
     isLoadingLoadMore.value = false;
   }
