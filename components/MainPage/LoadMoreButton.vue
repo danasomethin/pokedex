@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <span v-if="isLoading" class="button" @click="props.retrieveNewPokemonList">
+    <span
+      v-if="props.isLoading === false"
+      class="button"
+      @click="props.retrieveNewPokemonList"
+    >
       <h5 class="bold">Load more</h5>
     </span>
 
